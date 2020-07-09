@@ -7,6 +7,10 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
+    def show
+    @student = Student.find(params[:id])
+  end
+
   def create
     @student = Student.new(students_params)
     if @student.save
@@ -14,6 +18,20 @@ class StudentsController < ApplicationController
       redirect_to root_path
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(students_params)
+      flash[:notice] = "you have been successfilly updated your profile"
+      redirect_to student_path(@student)
+    else
+      render @student
     end
   end
 
