@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
+  before_action :set_student, only: [:show, :edit, :update]
+
   def index
     @students = Student.all
   end
@@ -10,7 +12,6 @@ class StudentsController < ApplicationController
   end
 
   def show
-    set_student
   end
 
   def create
@@ -24,11 +25,9 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    set_student
   end
 
   def update
-    set_student
     if @student.update(students_params)
       flash[:notice] = "you have been successfilly updated your profile"
       redirect_to student_path(@student)
