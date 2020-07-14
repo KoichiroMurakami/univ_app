@@ -1,7 +1,10 @@
 class CoursesController < ApplicationController
-    def index
-    end
+  skip_before_action :require_user
 
-    def new
-    end
+  def index
+    @courses = Course.all
+  end
+
+  def new
+  end
 end

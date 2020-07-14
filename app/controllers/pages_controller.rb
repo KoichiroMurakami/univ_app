@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
-    def about
-        
-    end
+  skip_before_action :require_user
+
+  def about
+  end
 end
